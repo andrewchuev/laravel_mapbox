@@ -118,3 +118,41 @@ document.addEventListener('click', function(event) {
         resultsDiv.style.display = 'none';
     }
 });
+
+
+let currentHighlightIndex = -1; // Index of the currently highlighted item
+
+searchInput.addEventListener('keydown', function(event) {
+    const items = resultsDiv.children;
+
+    switch (event.key) {
+        case 'ArrowDown':
+            // If the current index is less than the last item, increment it
+            if (currentHighlightIndex < items.length - 1) {
+                currentHighlightIndex++;
+                // Remove highlight from the previous item
+                if (currentHighlightIndex > 0) {
+                    items[currentHighlightIndex - 1].classList.remove('highlighted');
+                }
+                // Highlight the current item
+                items[currentHighlightIndex].classList.add('highlighted');
+            }
+            break;
+        case 'ArrowUp':
+            // If the current index is greater than the first item, decrement it
+            if (currentHighlightIndex > 0) {
+                currentHighlightIndex--;
+                // Remove highlight from the next item
+                items[currentHighlightIndex + 1].classList.remove('highlighted');
+                // Highlight the current item
+                items[currentHighlightIndex].classList.add('highlighted');
+            }
+            break;
+        case 'Enter':
+            // If an item is highlighted, "click" on it
+            if (currentHighlightIndex > -1 && currentHighlightIndex < items.length) {
+                items[currentHighlightIndex].click();
+            }
+            break;
+    }
+});
