@@ -8,6 +8,5 @@ export default defineConfig({
             refresh: true,
         }),
     ],
-    types: ["vite/client"]
 });
 

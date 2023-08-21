@@ -1,7 +1,8 @@
 # Mapbox Geocoding Search with Laravel
 
 This project integrates Mapbox's Geocoding API with a Laravel application to provide a search functionality. Users can search for a location by name or postal code, and the results are displayed on a Mapbox map.
-Features
+
+## Features
 
 - Debounced Search: Reduces the number of API calls by waiting for the user to stop typing.
 - Interactive Results: Click on a search result to view its location on the map.
@@ -12,7 +13,7 @@ Features
 
 Clone the Repository:
 
-    git clone [your-repository-link]
+    git clone https://github.com/andrewchuev/laravel_mapbox
 
 ## Install Dependencies:
 

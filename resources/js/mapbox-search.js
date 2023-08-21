@@ -52,6 +52,8 @@ searchInput.addEventListener('input', debouncedSearch);
 function displayResults(data) {
     resultsDiv.innerHTML = '';  // Очистить предыдущие результаты
 
+    console.log('data.features && data.features.length: ', data.features && data.features.length);
+
     if (data.features && data.features.length > 0) {
         resultsDiv.style.display = 'block';  // Показать выпадающий список
 
@@ -98,6 +100,7 @@ function displayResults(data) {
             resultsDiv.appendChild(div);
         });
     } else {
+        resultsDiv.style.display = 'block';
         resultsDiv.innerHTML = 'Ничего не найдено.';
     }
 }
