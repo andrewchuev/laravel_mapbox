@@ -13,12 +13,12 @@ function debounce(func, wait) {
     };
 }
 
-// Initialize the map
+// Mapbox initialization
 mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN;
 const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
-    center: [-95, 40],  // Center of the USA, you can adjust this as needed
+    center: [-95, 40],  // Center of the USA, you can adjust this
     zoom: 3
 });
 
@@ -43,7 +43,7 @@ const debouncedSearch = debounce(function() {
             console.error("Error during search:", error);
         });
     }
-}, 300);  // 300ms delay
+}, 300);  // Delay of 300 milliseconds
 
 searchInput.addEventListener('input', debouncedSearch);
 
@@ -91,9 +91,17 @@ function displayResults(data) {
                     zoom: 10
                 });
 
+                if (marker) {
+                    marker.remove();
+                }
+
+                if (popup) {
+                    popup.remove();
+                }
+
                 const popupContent = `
-                    <strong>${feature.text}</strong><br>
-                    ${feature.place_name}<br>
+                    <strong>${ feature.text }</strong><br>
+                    ${ feature.place_name }<br>
                 `;
 
                 popup = new mapboxgl.Popup({ offset: 25 })
@@ -101,10 +109,6 @@ function displayResults(data) {
 
                 const el = document.createElement('div');
                 el.className = 'custom-marker';
-
-                if (marker) {
-                    marker.remove();
-                }
 
                 marker = new mapboxgl.Marker(el)
                 .setLngLat(feature.geometry.coordinates)
@@ -137,3 +141,36 @@ document.addEventListener('click', function(event) {
         resultsDiv.style.display = 'none';
     }
 });
+
+const clearInputBtn = document.getElementById('clearInput');
+
+// Display or hide the clear button based on the input's content
+searchInput.addEventListener('input', function() {
+    if (searchInput.value.length > 0) {
+        clearInputBtn.style.display = 'block';
+    } else {
+        clearInputBtn.style.display = 'none';
+        resultsDiv.innerHTML = ''; // Clear search results
+    }
+});
+
+// Clear the input field when the clear button is clicked
+clearInputBtn.addEventListener('click', function() {
+    searchInput.value = '';
+    resultsDiv.innerHTML = ''; // Clear search results
+    clearInputBtn.style.display = 'none'; // Hide the clear button
+
+    // Remove the marker if it exists
+    if (marker) {
+        marker.remove();
+    }
+
+    // Reset the map to its initial state
+    map.flyTo({
+        center: [-95, 40],  // Center of the USA, you can adjust this
+        zoom: 3
+    });
+});
+
+
+
