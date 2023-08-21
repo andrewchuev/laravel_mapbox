@@ -4,7 +4,7 @@
 }
 
 .results-dropdown {
-    display: none;  /* По умолчанию скрыт */
+    display: none;
     position: absolute;
     top: 100%;
     left: 0;
@@ -29,7 +29,21 @@
 .custom-marker {
     width: 20px;
     height: 20px;
-    border-radius: 50%;  /* делает элемент круглым */
-    background-color: #FF5733;  /* ваш цвет */
-    border: 2px solid #FFFFFF;  /* белая граница вокруг маркера */
+    border-radius: 50%;
+    background-color: #FF5733;
+    border: 2px solid #FFFFFF;
+}
+
+.search-wrapper {
+    position: relative;
+    width: 300px;
+}
+
+.clear-input {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    display: none;
 }

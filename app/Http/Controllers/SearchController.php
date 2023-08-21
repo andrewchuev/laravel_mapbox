@@ -15,7 +15,7 @@ class SearchController extends Controller
         $response = $client->get('https://api.mapbox.com/geocoding/v5/mapbox.places/' . urlencode($query) . '.json', [
             'query' => [
                 'access_token' => getenv('VITE_MAPBOX_TOKEN'),
-                'limit' => 5,  // ограничиваем количество результатов
+                'limit' => 5,
                 'country' => 'us,ca'
             ],
         ]);
