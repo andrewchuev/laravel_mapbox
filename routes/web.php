@@ -14,11 +14,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/search-form', [SearchController::class, 'showSearchForm']);
-
-
+Route::get('/', [SearchController::class, 'showSearchForm']);
 Route::get('/search', [SearchController::class, 'search']);
